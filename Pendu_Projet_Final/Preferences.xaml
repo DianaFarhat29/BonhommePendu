@@ -1,0 +1,89 @@
+﻿<Window x:Class="Pendu_Projet_Final.Preferences"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Pendu_Projet_Final"
+        mc:Ignorable="d"
+        Title="Preferences" Height="618" Width="918"
+        SizeToContent="WidthAndHeight">
+
+    <Window.Resources>
+        <!-- Style pour le bouton avec coins arrondis et effet de survol -->
+        <Style x:Key="RoundedButtonWithHover" TargetType="Button">
+            <Setter Property="Background" Value="White"/>
+            <Setter Property="Foreground" Value="Black"/>
+            <Setter Property="BorderBrush" Value="#FF65A7FF"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border x:Name="border" CornerRadius="5" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" Content="{TemplateBinding Content}"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <!-- Animations pour la transition au survol -->
+                    <Trigger.EnterActions>
+                        <BeginStoryboard>
+                            <Storyboard>
+                                <ColorAnimation Duration="0:0:0.3" To="#FF65A7FF" Storyboard.TargetProperty="Background.Color"/>
+                                <ColorAnimation Duration="0:0:0.3" To="White" Storyboard.TargetProperty="Foreground.Color"/>
+                            </Storyboard>
+                        </BeginStoryboard>
+                    </Trigger.EnterActions>
+                    <Trigger.ExitActions>
+                        <BeginStoryboard>
+                            <Storyboard>
+                                <ColorAnimation Duration="0:0:0.3" To="White" Storyboard.TargetProperty="Background.Color"/>
+                                <ColorAnimation Duration="0:0:0.3" To="#FF65A7FF" Storyboard.TargetProperty="Foreground.Color"/>
+                            </Storyboard>
+                        </BeginStoryboard>
+                    </Trigger.ExitActions>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+    </Window.Resources>
+
+    <Grid Width="922" Height="604">
+        <StackPanel HorizontalAlignment="Left" Height="106" Margin="54,42,0,0" VerticalAlignment="Top" Width="366" Orientation="Horizontal">
+            <Image Height="88" Width="108" Source="/settings.png" Margin="0,0,10,0"/>
+            <Label Content="PRÉFÉRENCES" Width="246" Height="50" FontFamily="Century Gothic" FontSize="36" Foreground="#FF65A7FF"/>
+        </StackPanel>
+        <GroupBox HorizontalAlignment="Left" Height="160" Header="LANGUE" Margin="136,201,0,0" VerticalAlignment="Top" Width="300" FontSize="16" FontFamily="Century Gothic" Foreground="#FF65A7FF" FontWeight="Bold">
+            <Grid>
+                <RadioButton x:Name="radio_btn_francais" Content="Français" GroupName="Langue" HorizontalAlignment="Left" Margin="34,42,0,0" VerticalAlignment="Top" FontSize="14" FontWeight="Normal" IsChecked="True"/>
+                <RadioButton x:Name="radio_btn_anglais" Content="Anglais" GroupName="Langue" HorizontalAlignment="Left" Margin="34,67,0,0" VerticalAlignment="Top" FontSize="14" FontWeight="Normal"/>
+            </Grid>
+        </GroupBox>
+        <GroupBox HorizontalAlignment="Left" Height="160" Header="NIVEAU DE JEU" Margin="505,201,0,0" VerticalAlignment="Top" Width="300" FontSize="16" FontFamily="Century Gothic" Foreground="#FF65A7FF" FontWeight="Bold">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition Width="0*"/>
+                </Grid.ColumnDefinitions>
+                <RadioButton x:Name="radio_btn_moyen" Content="Moyen" GroupName="Niveau" HorizontalAlignment="Left" Margin="35,0,0,0" VerticalAlignment="Center" FontSize="14" Height="16" Width="66" FontWeight="Normal"/>
+                <RadioButton x:Name="radio_btn_difficile" Content="Difficile" GroupName="Niveau" HorizontalAlignment="Left" Margin="34,87,0,0" VerticalAlignment="Top" FontSize="14" Height="16" Width="68" FontWeight="Normal"/>
+                <RadioButton x:Name="radio_btn_facile" Content="Facile" GroupName="Niveau" HorizontalAlignment="Left" Margin="34,32,0,0" VerticalAlignment="Top" FontSize="14" Height="16" Width="60" FontWeight="Normal" IsChecked="True"/>
+            </Grid>
+        </GroupBox>
+        <StackPanel HorizontalAlignment="Center" Height="131" Margin="0,406,0,0" VerticalAlignment="Top" Width="472" Orientation="Horizontal">
+            <StackPanel Height="128" Width="140" Margin="1,0,26,0">
+                <Image Height="85" Width="99" Source="/dictionary.png"/>
+                <Button x:Name="btn_dictionnaire" Content="DICTIONNAIRE" Width="87" Margin="0,9,0,0" FontFamily="Century Gothic" BorderBrush="#FF65A7FF" Background="White" Foreground="#FF65A7FF" Style="{StaticResource RoundedButtonWithHover}" Height="28" FontWeight="Bold" Click="Button_Click_1" FontSize="11"/>
+            </StackPanel>
+            <StackPanel Height="128" Width="140" Margin="0,0,26,0">
+                <Image Height="85" Width="99" Source="/save.png"/>
+                <Button x:Name="btn_enregistrer" Content="ENREGISTRER" Width="87" FontFamily="Century Gothic" BorderBrush="#FF65A7FF" Background="White" Foreground="#FF65A7FF" Style="{StaticResource RoundedButtonWithHover}" Height="28" FontWeight="Bold" Margin="0,9,0,0" Click="Button_Click_2" FontSize="11"/>
+            </StackPanel>
+            <StackPanel Height="128" Width="140">
+                <Image Height="85" Width="99" Source="/home.png"/>
+                <Button x:Name="btn_accueil" Content="ACCUEIL" Width="87" FontFamily="Century Gothic" BorderBrush="#FF65A7FF" Background="White" Foreground="#FF65A7FF" Style="{StaticResource RoundedButtonWithHover}" Height="28" FontWeight="Bold" Padding="1,1,1,1" Margin="0,9,0,0" Click="Button_Click" FontSize="11"/>
+            </StackPanel>
+        </StackPanel>
+        <Button x:Name="btn_quitter" Content="QUITTER" FontFamily="Century Gothic" BorderBrush="#FF65A7FF" Background="White" Foreground="#FF65A7FF" Style="{StaticResource RoundedButtonWithHover}" FontWeight="Bold" FontSize="11" Margin="757,54,78,522" Width="87" Click="btn_quitter_Click"/>
+
+    </Grid>
+</Window>

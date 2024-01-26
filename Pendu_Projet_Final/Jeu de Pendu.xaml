@@ -1,0 +1,106 @@
+﻿<Window x:Class="Pendu_Projet_Final.Jeu_de_Pendu"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Pendu_Projet_Final"
+        mc:Ignorable="d"
+        Title="Jeu_de_Pendu" Height="619" Width="1057"
+        SizeToContent="WidthAndHeight">
+    <Window.Resources>
+        <Style x:Key="RoundedButtonWithHover" TargetType="Button">
+            <Setter Property="Background" Value="White"/>
+            <Setter Property="Foreground" Value="#FF65A7FF"/>
+            <Setter Property="BorderBrush" Value="#FF65A7FF"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border x:Name="border" CornerRadius="5" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}">
+                            <TextBlock Text="{TemplateBinding Content}" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="{TemplateBinding Foreground}" />
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" TargetName="border" Value="#FF65A7FF"/>
+                                <Setter Property="Foreground" Value="White"/>
+                            </Trigger>
+                            <Trigger Property="IsEnabled" Value="False">
+                                <Setter Property="Background" TargetName="border" Value="Gray"/>
+                                <Setter Property="Foreground" Value="White"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Window.Resources>
+
+
+
+
+
+    <Grid Height="604" Margin="0,0,-3,-1">
+        <Image x:Name="image_Bonhomme_Pendu" HorizontalAlignment="Left" Height="336" Margin="59,60,0,0" VerticalAlignment="Top" Width="348" Source="/LE_PENDU_LOGO_VERTICAL.png"/>
+        <Grid x:Name="contenant_jeu" HorizontalAlignment="Left" Height="250"  Margin="469,88,0,0" VerticalAlignment="Top" Width="522" Background="#FFF5F9FF" >
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="0*"/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <StackPanel HorizontalAlignment="Left" Height="29" Margin="409,54,0,0" VerticalAlignment="Top" Width="103" Orientation="Horizontal" Grid.Column="1">
+                <Label Content="Score: " FontSize="14" FontWeight="Normal" FontFamily="Century Gothic"/>
+                <Label x:Name="label_score" Content="0" Width="44" Foreground="#FF27CC57" Height="30" FontSize="14" FontFamily="Century Gothic"/>
+            </StackPanel>
+            <Label Content="Trouver ce mot: " FontSize="14" FontWeight="Normal" Margin="198,112,208,112" FontFamily="Century Gothic" Grid.Column="1"/>
+            <StackPanel HorizontalAlignment="Left" Height="29" Margin="36,54,0,0" VerticalAlignment="Top" Width="202" Orientation="Horizontal" Grid.Column="1">
+                <Label Content="Temps écoulé: " FontSize="14" FontWeight="Normal" FontFamily="Century Gothic"/>
+                <Label x:Name="label_temps_ecoule" Content="0s" Width="84" FontSize="14" FontFamily="Century Gothic" Foreground="#FF4A7FC5"/>
+            </StackPanel>
+            <StackPanel Grid.ColumnSpan="2"/>
+            <TextBlock x:Name="TextBlock_mot_cache" Height="60" Margin="210,152,0,0" TextWrapping="Wrap" Text="_ _ _ _ _ _" VerticalAlignment="Top" FontSize="24" Grid.Column="1" HorizontalAlignment="Left"/>
+        </Grid>
+        <Grid x:Name="contenant_lettres" HorizontalAlignment="Left" Height="170" Margin="529,348,0,0" VerticalAlignment="Top" Width="402">
+            <Button x:Name="btn_A" Content="A" FontFamily="Century Gothic" BorderBrush="#FF65A7FF" Background="White"  Style="{StaticResource RoundedButtonWithHover}" FontWeight="Bold" Margin="30,10,343,132" FontSize="14" Click="Lettre_Click"/>
+            <Button x:Name="btn_B" Content="B" FontFamily="Century Gothic" BorderBrush="#FF65A7FF" Background="White"  Style="{StaticResource RoundedButtonWithHover}" FontWeight="Bold" Margin="73,10,300,132" FontSize="14" Click="Lettre_Click"/>
+            <Button x:Name="btn_C" Content="C" FontFamily="Century Gothic" BorderBrush="#FF65A7FF" Background="White"  Style="{StaticResource RoundedButtonWithHover}" FontWeight="Bold" Margin="116,10,257,132" FontSize="14" Click="Lettre_Click"/>
+            <Button x:Name="btn_D" Content="D" FontFamily="Century Gothic" BorderBrush="#FF65A7FF" Background="White" Style="{StaticResource RoundedButtonWithHover}" FontWeight="Bold" Margin="161,10,212,132" FontSize="14" Click="Lettre_Click"/>
+            <Button x:Name="btn_E" Content="E" FontFamily="Century Gothic" BorderBrush="#FF65A7FF" Background="White"  Style="{StaticResource RoundedButtonWithHover}" FontWeight="Bold" Margin="204,10,169,132" FontSize="14" Click="Lettre_Click"/>
+            <Button x:Name="btn_F" Content="F" FontFamily="Century Gothic" BorderBrush="#FF65A7FF" Background="White"  Style="{StaticResource RoundedButtonWithHover}" FontWeight="Bold" Margin="248,10,126,132" FontSize="14" Click="Lettre_Click"/>
+            <Button x:Name="btn_G" Content="G" FontFamily="Century Gothic" BorderBrush="#FF65A7FF" Background="White"  Style="{StaticResource RoundedButtonWithHover}" FontWeight="Bold" Margin="291,10,83,132" FontSize="14" Click="Lettre_Click"/>
+            <Button x:Name="btn_H" Content="H" FontFamily="Century Gothic" BorderBrush="#FF65A7FF" Background="White"  Style="{StaticResource RoundedButtonWithHover}" FontWeight="Bold" Margin="335,10,39,132" FontSize="14" Click="Lettre_Click"/>
+            <Button x:Name="btn_I" Content="I" FontFamily="Century Gothic" BorderBrush="#FF65A7FF" Background="White" Style="{StaticResource RoundedButtonWithHover}" FontWeight="Bold" Margin="30,51,343,91" FontSize="14" Click="Lettre_Click"/>
+            <Button x:Name="btn_J" Content="J" FontFamily="Century Gothic" BorderBrush="#FF65A7FF" Background="White"  Style="{StaticResource RoundedButtonWithHover}" FontWeight="Bold" Margin="73,51,300,91" FontSize="14" Click="Lettre_Click"/>
+            <Button x:Name="btn_K" Content="K" FontFamily="Century Gothic" BorderBrush="#FF65A7FF" Background="White"  Style="{StaticResource RoundedButtonWithHover}" FontWeight="Bold" Margin="116,51,257,91" FontSize="14" Click="Lettre_Click"/>
+            <Button x:Name="btn_L" Content="L" FontFamily="Century Gothic" BorderBrush="#FF65A7FF" Background="White"  Style="{StaticResource RoundedButtonWithHover}" FontWeight="Bold" Margin="161,51,212,91" FontSize="14" Click="Lettre_Click"/>
+            <Button x:Name="btn_M" Content="M" FontFamily="Century Gothic" BorderBrush="#FF65A7FF" Background="White"  Style="{StaticResource RoundedButtonWithHover}" FontWeight="Bold" Margin="204,51,169,91" FontSize="14" Click="Lettre_Click"/>
+            <Button x:Name="btn_N" Content="N" FontFamily="Century Gothic" BorderBrush="#FF65A7FF" Background="White"  Style="{StaticResource RoundedButtonWithHover}" FontWeight="Bold" Margin="248,51,126,91" FontSize="14" Click="Lettre_Click"/>
+            <Button x:Name="btn_O" Content="O" FontFamily="Century Gothic" BorderBrush="#FF65A7FF" Background="White"  Style="{StaticResource RoundedButtonWithHover}" FontWeight="Bold" Margin="290,51,82,91" FontSize="14" Click="Lettre_Click"/>
+            <Button x:Name="btn_P" Content="P" FontFamily="Century Gothic" BorderBrush="#FF65A7FF" Background="White"  Style="{StaticResource RoundedButtonWithHover}" FontWeight="Bold" Margin="334,51,38,91" FontSize="14" Click="Lettre_Click"/>
+            <Button x:Name="btn_Q" Content="Q" FontFamily="Century Gothic" BorderBrush="#FF65A7FF" Background="White" Style="{StaticResource RoundedButtonWithHover}" FontWeight="Bold" Margin="30,91,343,51" FontSize="14" Click="Lettre_Click"/>
+            <Button x:Name="btn_R" Content="R" FontFamily="Century Gothic" BorderBrush="#FF65A7FF" Background="White" Style="{StaticResource RoundedButtonWithHover}" FontWeight="Bold" Margin="73,91,300,51" FontSize="14" Click="Lettre_Click"/>
+            <Button x:Name="btn_S" Content="S" FontFamily="Century Gothic" BorderBrush="#FF65A7FF" Background="White" Style="{StaticResource RoundedButtonWithHover}" FontWeight="Bold" Margin="116,91,257,51" FontSize="14" Click="Lettre_Click"/>
+            <Button x:Name="btn_T" Content="T" FontFamily="Century Gothic" BorderBrush="#FF65A7FF" Background="White" Style="{StaticResource RoundedButtonWithHover}" FontWeight="Bold" Margin="161,91,212,51" FontSize="14" Click="Lettre_Click"/>
+            <Button x:Name="btn_U" Content="U" FontFamily="Century Gothic" BorderBrush="#FF65A7FF" Background="White" Style="{StaticResource RoundedButtonWithHover}" FontWeight="Bold" Margin="204,91,169,51" FontSize="14" Click="Lettre_Click"/>
+            <Button x:Name="btn_V" Content="V" FontFamily="Century Gothic" BorderBrush="#FF65A7FF" Background="White" Style="{StaticResource RoundedButtonWithHover}" FontWeight="Bold" Margin="247,91,126,51" FontSize="14" Click="Lettre_Click"/>
+            <Button x:Name="btn_W" Content="W" FontFamily="Century Gothic" BorderBrush="#FF65A7FF" Background="White" Style="{StaticResource RoundedButtonWithHover}" FontWeight="Bold" Margin="290,91,83,51" FontSize="14" Click="Lettre_Click"/>
+            <Button x:Name="btn_X" Content="X" FontFamily="Century Gothic" BorderBrush="#FF65A7FF" Background="White" Style="{StaticResource RoundedButtonWithHover}" FontWeight="Bold" Margin="334,91,39,51" FontSize="14" Click="Lettre_Click"/>
+            <Button x:Name="btn_Y" Content="Y" FontFamily="Century Gothic" BorderBrush="#FF65A7FF" Background="White" Style="{StaticResource RoundedButtonWithHover}" FontWeight="Bold" Margin="161,130,212,12" FontSize="14" Click="Lettre_Click"/>
+            <Button x:Name="btn_Z" Content="Z" FontFamily="Century Gothic" BorderBrush="#FF65A7FF" Background="White" Style="{StaticResource RoundedButtonWithHover}" FontWeight="Bold" Margin="204,130,169,12" FontSize="14" Click="Lettre_Click"/>
+        </Grid>
+        <Button x:Name="btn_debuter_jeu" Content="DÉBUTER LE JEU" FontFamily="Century Gothic" BorderBrush="#FF65A7FF" Background="White" Style="{StaticResource RoundedButtonWithHover}" FontWeight="Bold" FontSize="11" Margin="674,523,274,53" Click="btn_debuter_jeu_Click"/>
+        <StackPanel HorizontalAlignment="Left" Height="131" Margin="37,445,0,0" VerticalAlignment="Top" Width="380" Orientation="Horizontal">
+            <StackPanel Height="128" Width="132" Margin="1,0,-11,0">
+                <Image Height="63" Width="63" Source="/settings.png"/>
+                <Button x:Name="btn_preferences" Content="PRÉFÉRENCES" Width="87" Margin="0,9,0,0" FontFamily="Century Gothic" BorderBrush="#FF65A7FF" Background="White" Style="{StaticResource RoundedButtonWithHover}" Height="28" FontWeight="Bold" FontSize="11" Click="btn_preferences_Click"/>
+            </StackPanel>
+            <StackPanel Height="128" Width="132" Margin="0,0,-11,0">
+                <Image Height="63" Width="63" Source="/home.png"/>
+                <Button x:Name="btn_accueil" Content="ACCUEIL" Width="87" FontFamily="Century Gothic" BorderBrush="#FF65A7FF" Background="White" Style="{StaticResource RoundedButtonWithHover}" Height="28" FontWeight="Bold" Margin="0,9,0,0" FontSize="11" Click="btn_accueil_Click"/>
+            </StackPanel>
+            <StackPanel Height="128" Width="132">
+                <Image Height="63" Width="63" Source="/Historique.png"/>
+                <Button x:Name="btn_historique" Content="HISTORIQUE" Width="87" FontFamily="Century Gothic" BorderBrush="#FF65A7FF" Background="White" Style="{StaticResource RoundedButtonWithHover}" Height="28" FontWeight="Bold" Padding="1,1,1,1" Margin="0,9,0,0" FontSize="11" Click="btn_historique_Click"/>
+            </StackPanel>
+        </StackPanel>
+        <Button x:Name="btn_quitter" Content="QUITTER" FontFamily="Century Gothic" BorderBrush="#FF65A7FF" Background="White"  Style="{StaticResource RoundedButtonWithHover}" FontWeight="Bold" FontSize="11" Margin="903,30,70,546" Width="87" Click="btn_quitter_Click"/>
+
+    </Grid>
+</Window>
